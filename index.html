@@ -31,11 +31,13 @@
 
         form input[type="submit"] {
             margin-top: 20px; /* 送信ボタンの上部に余白を設定 */
+            margin: 0 auto;
         }
 
 	.proviso {
 		font-size: 10px;
 		color: red;
+		text-align: center;
 	}
 		
     </style>
@@ -46,7 +48,7 @@
         
         
         <label for="cash">現金:</label>
-        <input type="number" id="cash" name="cash" value="0"><br>
+        <input type="number" id="cash" name="cash" value=""><br>
         
         <label for="initial_loan">物件価格:</label>
         <input type="number" id="initial_loan" name="initial_loan" value="0"><br>
@@ -82,7 +84,7 @@
         <input type="submit" value="計算">
 
 	    <p class="proviso">補足1: 返済利息と返済元金をまとめて入力することも可</p>
-	    <p class="proviso">補足2:　管理費と修繕積立金をまとめて入力することも可</p>
+	    <p class="proviso">補足2: 管理費と修繕積立金をまとめて入力することも可</p>
     </form>
 
     <script>
