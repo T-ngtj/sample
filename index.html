@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>財務データ入力フォーム</title>
+    <style>
+        /* CSSスタイルを追加 */
+        h2 {
+			padding: 30px ;
+			text-align: center;
+		}
+		
+        form {
+            max-width: 400px; /* フォームの最大幅を設定 */
+            margin: 0 auto; /* 中央寄せ */
+        }
+
+        form label {
+            width: 150px; /* ラベルの幅を設定 */
+            display: inline-block;
+            text-align: right; /* ラベルを右寄せ */
+        }
+
+        form input[type="number"] {
+            width: calc(100% - 170px); /* 数値入力フィールドの幅を設定 */
+            height: 30px;
+            /* ラベルの幅（150px）とスペース（20px）を引いた幅 */
+            margin-bottom: 20px; /* フィールドの下部に余白を設定 */
+        }
+
+        form input[type="submit"] {
+            margin-top: 20px; /* 送信ボタンの上部に余白を設定 */
+        }
+    </style>
+</head>
+<body>
+    <h2>財務データ入力フォーム</h2>
+    <form id="financialForm">
+        <label for="data_name">データ番号:</label>
+        <input type="text" id="data_name" name="data_name" value="1"><br>
+        
+        <label for="cash">現金:</label>
+        <input type="number" id="cash" name="cash" value="0"><br>
+        
+        <label for="initial_loan">物件価格:</label>
+        <input type="number" id="initial_loan" name="initial_loan" value="0"><br>
+        
+        <label for="loan_balance">借入金残高:</label>
+        <input type="number" id="loan_balance" name="loan_balance" value="0"><br>
+        
+        <label for="repayment_interest">返済利息:</label>
+        <input type="number" id="repayment_interest" name="repayment_interest" value="0"><br>
+        
+        <label for="repayment_principal">返済元金:</label>
+        <input type="number" id="repayment_principal" name="repayment_principal" value="0"><br>
+        
+        <label for="income">収入:</label>
+        <input type="number" id="income" name="income" value="0"><br>
+        
+        <label for="management_cost">管理費:</label>
+        <input type="number" id="management_cost" name="management_cost" value="0"><br>
+        
+        <label for="repair_reserve">修繕積立金:</label>
+        <input type="number" id="repair_reserve" name="repair_reserve" value="0"><br>
+        
+        <label for="fixed_asset_tax">固定資産税:</label>
+        <input type="number" id="fixed_asset_tax" name="fixed_asset_tax" value="0"><br>
+        
+        <label for="total_investment">総投資額:</label>
+        <input type="number" id="total_investment" name="total_investment" value="0"><br>
+        
+        <input type="submit" value="計算">
+    </form>
+
+    <script>
+        document.getElementById('financialForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // 入力値の取得
+            const cash = parseFloat(document.getElementById('cash').value) || 0;
+            const initialLoan = parseFloat(document.getElementById('initial_loan').value) || 0;
+            const loanBalance = parseFloat(document.getElementById('loan_balance').value) || 0;
+            const repaymentInterest = parseFloat(document.getElementById('repayment_interest').value) || 0;
+            const repaymentPrincipal = parseFloat(document.getElementById('repayment_principal').value) || 0;
+            const income = parseFloat(document.getElementById('income').value) || 0;
+            const managementCost = parseFloat(document.getElementById('management_cost').value) || 0;
+            const repairReserve = parseFloat(document.getElementById('repair_reserve').value) || 0;
+            const fixedAssetTax = parseFloat(document.getElementById('fixed_asset_tax').value) || 0;
+            const total_investment = parseFloat(document.getElementById('total_investment').value) || 0;
+
+            // 計算
+            const annualCF = income - fixedAssetTax - managementCost - repairReserve - repaymentInterest - repaymentPrincipal;
+            const equityRatio = (cash / (cash + loanBalance)*100).toFixed(2);
+            const repaymentRatio = (((repaymentInterest + repaymentPrincipal) / income) * 100).toFixed(2);
+            const totalInvestmentAmount = (cash + initialLoan).toFixed(2) ;
+            const nRoi = (annualCF / total_investment * 100).toFixed(2);
+            const Roe = (income / cash * 100).toFixed(2);
+            const Roa = (income / (cash +  initial_loan) * 100).toFixed(4);
+
+            // 結果の表示
+            alert('年間CF: ' + annualCF + "円" + '\n自己資本比率: ' + equityRatio + "%" + '\n返済比率: ' + repaymentRatio + "%" + '\nROI: ' + nRoi + "%" );
+        });
+    </script>
+</body>
+</html>
