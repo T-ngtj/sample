@@ -7,9 +7,9 @@
     <style>
         /* CSSスタイルを追加 */
         h2 {
-			padding: 30px ;
-			text-align: center;
-		}
+		padding: 30px ;
+		text-align: center;
+	}
 		
         form {
             max-width: 400px; /* フォームの最大幅を設定 */
@@ -32,6 +32,12 @@
         form input[type="submit"] {
             margin-top: 20px; /* 送信ボタンの上部に余白を設定 */
         }
+
+	proviso {
+		font-size: 7px;
+		color: red;
+	}
+		
     </style>
 </head>
 <body>
@@ -51,7 +57,7 @@
         <label for="repayment_interest">返済利息:</label>
         <input type="number" id="repayment_interest" name="repayment_interest" value="0"><br>
 
-	<p>返済利息と返済元金をまとめて入力することも可</p>
+	
 	    
         <label for="repayment_principal">返済元金:</label>
         <input type="number" id="repayment_principal" name="repayment_principal" value="0"><br>
@@ -65,7 +71,7 @@
         <label for="repair_reserve">修繕積立金:</label>
         <input type="number" id="repair_reserve" name="repair_reserve" value="0"><br>
 
-	<p>管理費と修繕積立金をまとめて入力することも可</p>
+	
         
         <label for="fixed_asset_tax">固定資産税:</label>
         <input type="number" id="fixed_asset_tax" name="fixed_asset_tax" value="0"><br>
@@ -74,6 +80,9 @@
         <input type="number" id="total_investment" name="total_investment" value="0"><br>
         
         <input type="submit" value="計算">
+
+	    <p class="proviso">補足1: 返済利息と返済元金をまとめて入力することも可</p>
+	    <p class="proviso">補足2:　管理費と修繕積立金をまとめて入力することも可</p>
     </form>
 
     <script>
