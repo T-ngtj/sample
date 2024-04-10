@@ -3,27 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Current Year and Month</title>
+    <title>Copy Current Year and Month</title>
+    <script>
+        // 現在の日付を取得
+        const currentDate = new Date();
+        // 年と月を取得
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth() + 1; // JavaScriptでは0が1月を表すため、+1する
+        // 月が1桁の場合は0を付け加える
+        const formattedMonth = month < 10 ? '0' + month : month;
+        // 年月をYYYYMM形式で表示
+        const currentYearMonth = year + formattedMonth;
+        
+        // ページ読み込み時にアラートを表示
+        window.onload = function() {
+            alert("現在の年月は: " + currentYearMonth + "\nこの数値をクリップボードにコピーしました。");
+            // テキストエリアを生成してクリップボードにコピー
+            const textarea = document.createElement('textarea');
+            textarea.value = currentYearMonth;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        };
+    </script>
 </head>
 <body>
-
-<script>
-    // 現在の日付を取得
-    const currentDate = new Date();
-
-    // 年と月を取得
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth() + 1; // JavaScriptでは0が1月を表すため、+1する
-
-    // 月が1桁の場合は0を付け加える
-    const formattedMonth = month < 10 ? '0' + month : month;
-
-    // 年月をYYYYMM形式で表示
-    const currentYearMonth = year + formattedMonth;
-
-    // アラートで現在の年月を表示
-    alert("現在の年月は: " + currentYearMonth);
-</script>
-
 </body>
 </html>
