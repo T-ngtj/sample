@@ -20,17 +20,21 @@
     
     // ページ読み込み時にアラートを表示
     window.onload = function() {
-        // ユーザーがテキストを選択できるようにテキストエリアを表示
-        const textarea = document.createElement('textarea');
-        textarea.style.position = 'fixed'; // ページの固定位置に配置
-        textarea.style.opacity = 0; // 不可視
-        textarea.value = currentYearMonth;
-        document.body.appendChild(textarea);
-        textarea.focus(); // テキストエリアにフォーカスを当てる
-        textarea.select(); // テキストを選択
+        // ユーザーがテキストを選択できるようにテキストを表示
+        const textContainer = document.createElement('div');
+        textContainer.style.position = 'fixed'; // ページの固定位置に配置
+        textContainer.style.top = '-9999px'; // 画面外に配置
+        textContainer.textContent = currentYearMonth;
+        document.body.appendChild(textContainer);
+        // テキストを選択
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(textContainer);
+        selection.removeAllRanges();
+        selection.addRange(range);
         // 選択されたテキストをコピー
         document.execCommand('copy');
-        document.body.removeChild(textarea);
+        document.body.removeChild(textContainer);
         // ユーザーに通知
         alert("現在の年月は: " + currentYearMonth + "\nクリップボードにコピーされました。");
     };
